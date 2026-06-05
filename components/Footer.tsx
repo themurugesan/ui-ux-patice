@@ -1,104 +1,119 @@
 import Logo from "./Logo";
-import { ArrowRightIcon, StarIcon } from "./icons";
+import NewsletterForm from "./NewsletterForm";
+import {
+  MailIcon,
+  PhoneIcon,
+  MapPinIcon,
+  StarIcon,
+  LinkedinIcon,
+  XSocialIcon,
+  InstagramIcon,
+} from "./icons";
+import { company, footerNav } from "@/lib/content";
 
-const COLUMNS = [
-  {
-    heading: "Services",
-    links: ["Google Ads management", "Landing pages", "Conversion tracking", "Reporting"],
-  },
-  {
-    heading: "Company",
-    links: ["About", "Case studies", "Process", "Careers"],
-  },
-  {
-    heading: "Resources",
-    links: ["Free audit", "Blog", "ROI calculator", "Help center"],
-  },
+const SOCIAL = [
+  { label: "LinkedIn", href: company.social.linkedin, Icon: LinkedinIcon },
+  { label: "X (Twitter)", href: "#", Icon: XSocialIcon },
+  { label: "Instagram", href: company.social.instagram, Icon: InstagramIcon },
 ];
 
 export default function Footer() {
   return (
-    <footer className="mt-auto bg-ink text-white">
+    <footer className="mt-auto bg-navy-900 text-white">
       <div className="container-x py-16 lg:py-20">
         {/* Top: brand + newsletter */}
-        <div className="grid gap-10 border-b border-white/12 pb-12 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+        <div className="grid gap-10 border-b border-white/12 pb-12 lg:grid-cols-[1.3fr_1fr] lg:items-start lg:gap-16">
           <div className="max-w-sm">
-            <Logo variant="reversed" size={34} asHomeLink />
+            <Logo variant="reversed" size={32} asHomeLink />
             <p className="mt-5 text-white/70">
-              Data-driven Google Ads systems for service businesses.
-              Predictable leads, measurable growth — built from clear, specific,
-              accountable work.
+              Data-driven Google Ads systems for service businesses. Predictable
+              leads, measurable growth — built from clear, specific, accountable work.
             </p>
-            <div className="mt-5 flex items-center gap-2">
+            <div className="mt-5 flex items-center gap-2.5">
               <div className="flex gap-0.5 text-accent" aria-hidden="true">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <StarIcon key={i} size={15} />
                 ))}
               </div>
-              <span className="text-sm font-semibold text-white">
-                4.9/5 · 120+ businesses
-              </span>
+              <span className="text-sm font-semibold text-white">4.9/5 · 120+ businesses</span>
             </div>
           </div>
 
-          <div className="lg:justify-self-end lg:text-right">
-            <h2 className="font-display text-xl font-extrabold text-white">
-              Get a free audit
+          <div>
+            <h2 className="font-display text-lg font-extrabold text-white">
+              Sharper ad spend, every month
             </h2>
-            <p className="mt-2 text-white/70">
-              See where your budget is leaking — in 24 hours.
+            <p className="mt-2 text-sm text-white/70">
+              One practical Google Ads tip for service businesses. No spam, unsubscribe anytime.
             </p>
-            <a href="#cta" className="btn btn-accent mt-5">
-              Start a free audit
-              <ArrowRightIcon size={18} />
-            </a>
+            <div className="mt-4 max-w-sm">
+              <NewsletterForm />
+            </div>
           </div>
         </div>
 
-        {/* Nav columns */}
-        <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-3 lg:grid-cols-4">
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-            <a
-              href="mailto:brand@searchadsbro.com"
-              className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-accent hover:underline"
-            >
-              brand@searchadsbro.com
-              <ArrowRightIcon size={16} />
-            </a>
-            <p className="mt-2 text-sm text-white/55">
-              Bengaluru, IN · searchadsbro.com
-            </p>
+        {/* Middle: nav + contact */}
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_2fr]">
+          <address className="not-italic">
+            <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-white/45">Get in touch</h2>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <a href={`mailto:${company.email}`} className="inline-flex min-h-[40px] items-center gap-2.5 text-[0.95rem] text-white/80 hover:text-white">
+                  <MailIcon size={18} className="text-accent" />
+                  {company.email}
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${company.phoneHref}`} className="inline-flex min-h-[40px] items-center gap-2.5 text-[0.95rem] text-white/80 hover:text-white">
+                  <PhoneIcon size={18} className="text-accent" />
+                  {company.phoneDisplay}
+                </a>
+              </li>
+              <li className="inline-flex min-h-[40px] items-center gap-2.5 text-[0.95rem] text-white/80">
+                <MapPinIcon size={18} className="text-accent" />
+                {company.location}
+              </li>
+            </ul>
+          </address>
+
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            {footerNav.map((col) => (
+              <nav key={col.heading} aria-label={col.heading}>
+                <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-white/45">{col.heading}</h2>
+                <ul className="mt-4 space-y-1">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <a href={link.href} className="inline-flex min-h-[38px] items-center text-[0.95rem] text-white/80 transition-colors hover:text-white">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
           </div>
-          {COLUMNS.map((col) => (
-            <nav key={col.heading} aria-label={col.heading}>
-              <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-white/45">
-                {col.heading}
-              </h2>
-              <ul className="mt-4 space-y-1">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="inline-flex min-h-[40px] items-center text-[0.9375rem] text-white/80 transition-colors hover:text-white"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-start justify-between gap-4 border-t border-white/12 pt-7 text-sm text-white/55 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Search Ads Bro. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <a href="#" className="hover:text-white">Privacy</a>
+        <div className="flex flex-col items-start justify-between gap-5 border-t border-white/12 pt-7 sm:flex-row sm:items-center">
+          <p className="text-sm text-white/55">
+            © {new Date().getFullYear()} {company.name}. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/55">
+            <a href="#" className="hover:text-white">Privacy Policy</a>
             <a href="#" className="hover:text-white">Terms</a>
-            <a href="#" className="hover:text-white" aria-label="Search Ads Bro on X">
-              @searchadsbro
-            </a>
+            <div className="flex items-center gap-2">
+              {SOCIAL.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/12 text-white/70 transition-colors hover:border-white/30 hover:text-white"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

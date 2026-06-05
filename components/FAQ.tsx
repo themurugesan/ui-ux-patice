@@ -2,90 +2,77 @@ import Reveal from "./Reveal";
 
 const FAQS = [
   {
-    q: "Will you change my account without asking?",
-    a: "Never. You connect via Google OAuth in one click, and we never write to your account without your confirmation. You stay in control of every change.",
+    q: "Who owns the Google Ads account and the data?",
+    a: "You do — always. We work inside your account via secure OAuth, so you keep full ownership of the account, the history, and every conversion. If we ever part ways, nothing leaves with us.",
+  },
+  {
+    q: "Will you make changes without asking?",
+    a: "No. We audit and propose, but you approve the strategy, keywords, and budgets before anything goes live. You stay in control of every meaningful change.",
   },
   {
     q: "How fast will I see results?",
-    a: "You get a live dashboard from minute one. Most service businesses see their first qualified leads within days of launch — and we review progress with you every week.",
+    a: "You get a live dashboard from day one. Most service businesses see their first qualified leads within days of launch, with performance compounding over the first 60–90 days.",
   },
   {
     q: "Is there a lock-in contract?",
-    a: "No. There are no long-term contracts and no lock-in. We earn the relationship month to month by showing measurable results.",
+    a: "No long-term lock-in. We earn the relationship month to month by showing measurable results — cost per lead, ROAS, and qualified leads you can verify.",
   },
   {
-    q: "What exactly do you manage?",
-    a: "The whole engine: keyword strategy, ad copy, bids, audiences, landing pages, and conversion tracking — continuously optimized and reported in plain English.",
+    q: "How does pricing work?",
+    a: "A flat monthly management fee based on your ad spend and scope — never a percentage-of-spend markup. Your ad budget is paid directly to Google. See the Pricing section for indicative tiers.",
   },
   {
-    q: "How do you report on performance?",
-    a: "A real-time dashboard plus a weekly review written in plain English. Every claim earns a number — cost per lead, ROAS, and qualified leads, with full context.",
-  },
-  {
-    q: "Is the free audit really free?",
-    a: "Yes — free, no card required, no obligation. We'll show you where budget is leaking and the plan to fix it, whether or not you work with us.",
+    q: "What does the free audit include?",
+    a: "A full review of your account in 24 hours: where budget is leaking line by line, a keyword and landing-page action plan, and projected cost-per-lead and ROAS — no card, no obligation.",
   },
 ];
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section warm-panel">
+    <section id="faq" className="section bg-mist">
       <div className="container-x">
-        <div className="mx-auto max-w-2xl text-center">
-          <Reveal>
-            <span className="eyebrow text-brand">Answers to</span>
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <Reveal className="lg:sticky lg:top-28 lg:self-start">
+            <span className="eyebrow text-brand">Answers</span>
             <h2
-              className="mt-4 font-display"
+              className="mt-5 font-display"
               style={{
                 fontSize: "var(--text-h1)",
                 lineHeight: "var(--text-h1--line-height)",
                 letterSpacing: "var(--text-h1--letter-spacing)",
               }}
             >
-              Frequently asked questions.
+              Questions, answered straight.
             </h2>
+            <p className="mt-5 text-ink-soft">
+              Still unsure about something?{" "}
+              <a href="#cta" className="font-semibold text-brand underline-offset-4 hover:underline">
+                Talk to our team →
+              </a>
+            </p>
           </Reveal>
-        </div>
 
-        <div className="mx-auto mt-12 max-w-3xl space-y-3">
-          {FAQS.map((item, i) => (
-            <Reveal key={item.q} delay={i * 50}>
-              <details className="group rounded-3xl border border-line bg-cloud px-6 py-1 [&[open]]:shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-display text-lg font-bold text-ink marker:hidden focus-visible:outline-none">
-                  {item.q}
-                  <span
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-tint-sky text-brand transition-transform duration-300 group-open:rotate-45"
-                    aria-hidden="true"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path
-                        d="M8 3v10M3 8h10"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </span>
-                </summary>
-                <p className="pb-6 pr-12 leading-relaxed text-ink-soft">
-                  {item.a}
-                </p>
-              </details>
-            </Reveal>
-          ))}
+          <div className="space-y-3">
+            {FAQS.map((item, i) => (
+              <Reveal key={item.q} delay={i * 40}>
+                <details className="group rounded-xl border border-line bg-cloud px-6 [&[open]]:border-line-strong [&[open]]:shadow-sm">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-display text-base font-bold text-ink marker:hidden focus-visible:outline-none sm:text-lg">
+                    {item.q}
+                    <span
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-tint-sky text-brand transition-transform duration-300 group-open:rotate-45"
+                      aria-hidden="true"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <p className="pb-6 pr-10 leading-relaxed text-ink-soft">{item.a}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
         </div>
-
-        <Reveal delay={120} className="mt-10 text-center">
-          <p className="text-ink-soft">
-            Still have a question?{" "}
-            <a
-              href="mailto:brand@searchadsbro.com"
-              className="font-semibold text-brand underline-offset-4 hover:underline"
-            >
-              Talk to us →
-            </a>
-          </p>
-        </Reveal>
       </div>
     </section>
   );

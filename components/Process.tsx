@@ -6,25 +6,25 @@ const STEPS = [
     n: "01",
     icon: PlugIcon,
     title: "Connect Google Ads",
-    body: "OAuth in a single click. We never write to your account without confirmation.",
+    body: "OAuth in a single click. We audit your account and never write changes without your confirmation.",
   },
   {
     n: "02",
     icon: CompassIcon,
-    title: "Tell us the goal",
-    body: "Pick a service vertical, a target cost-per-lead, and a weekly cap. That's it.",
+    title: "Set the goal",
+    body: "Pick a service vertical, a target cost-per-lead, and a weekly cap. We translate it into a plan.",
   },
   {
     n: "03",
     icon: ClipboardIcon,
-    title: "Review the plan",
-    body: "Keywords, ad copy, and landing pages — all editable before anything goes live.",
+    title: "Review & approve",
+    body: "Keywords, ad copy, and landing pages — all editable and signed off before anything goes live.",
   },
   {
     n: "04",
     icon: RocketIcon,
-    title: "Launch & learn",
-    body: "A live dashboard from minute one, plus a weekly review in plain English.",
+    title: "Launch & scale",
+    body: "Live dashboard from minute one, continuous optimization, and a weekly review in plain English.",
   },
 ];
 
@@ -32,46 +32,42 @@ export default function Process() {
   return (
     <section id="process" className="section">
       <div className="container-x">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl">
           <Reveal>
             <span className="eyebrow text-brand">How it works</span>
             <h2
-              className="mt-4 font-display"
+              className="mt-5 font-display"
               style={{
                 fontSize: "var(--text-h1)",
                 lineHeight: "var(--text-h1--line-height)",
                 letterSpacing: "var(--text-h1--letter-spacing)",
               }}
             >
-              Four steps to your first lead.
+              From connected to converting in four steps.
             </h2>
-            <p className="mt-4 text-lg text-ink-soft">
-              No drawn-out onboarding. From connection to live campaign, you stay
-              in control the whole way.
+            <p className="mt-5 text-lg text-ink-soft">
+              No drawn-out onboarding. You stay in control the whole way — from
+              first connection to your first qualified lead.
             </p>
           </Reveal>
         </div>
 
-        <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="relative mt-14 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <span className="absolute left-0 right-0 top-7 hidden h-px bg-line lg:block" aria-hidden="true" />
           {STEPS.map((s, i) => {
             const Icon = s.icon;
             return (
-              <Reveal key={s.n} delay={i * 90} as="li">
-                <div className="soft-card relative flex h-full flex-col p-7">
-                  <span
-                    className="tabular absolute right-6 top-5 font-display text-5xl font-extrabold text-tint-sky"
-                    aria-hidden="true"
-                  >
-                    {s.n}
-                  </span>
-                  <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-accent">
+              <Reveal key={s.n} delay={i * 90} as="li" className="relative">
+                <div className="flex items-center gap-4 lg:block">
+                  <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-line bg-cloud text-brand shadow-sm">
                     <Icon size={24} />
                   </span>
-                  <h3 className="relative mt-5 font-display text-lg font-extrabold text-ink">
-                    {s.title}
-                  </h3>
-                  <p className="relative mt-2 text-ink-soft">{s.body}</p>
+                  <div className="lg:mt-5">
+                    <span className="tabular text-xs font-bold text-ink-faint">STEP {s.n}</span>
+                    <h3 className="font-display text-lg font-extrabold text-ink lg:mt-1">{s.title}</h3>
+                  </div>
                 </div>
+                <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft lg:pr-4">{s.body}</p>
               </Reveal>
             );
           })}

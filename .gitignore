@@ -11,7 +11,7 @@
 !.yarn/versions
 /temp_screenshot
 /reference_website_screenshot
-
+/client_info
 # testing
 /coverage
 
