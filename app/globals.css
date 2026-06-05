@@ -1,36 +1,39 @@
 @import "tailwindcss";
 
 /* ============================================================
-   SEARCH ADS BRO — Design Tokens (§10 Design Tokens & AI Handoff)
-   Token names are normative. Hex is derived from tokens.
+   SEARCH ADS BRO — Design System
+   Brand tokens (§10) rendered in a soft, warm, friendly key
+   inspired by modern membership/SaaS marketing sites.
    ============================================================ */
 :root {
-  /* Brand */
-  --brand: #3f5bd9; /* color/brand/primary — Royal Blue */
-  --brand-strong: #3349b8; /* hover / pressed */
-  --ink: #1e2a78; /* color/ink/default — Deep Navy */
-  --ink-soft: #44508f; /* ink @ ~70% for secondary text */
-  --surface: #dce3ff; /* color/surface/raised — Light Blue */
-  --surface-soft: #ecefff; /* lighter tint for large fills */
-  --accent: #eec013; /* color/accent/highlight — Signal Yellow (≤10%) */
-  --paper: #fbfbfe; /* page background — cool near-white */
+  /* Brand core */
+  --brand: #3f5bd9; /* Royal Blue — links, accents */
+  --brand-strong: #3349b8;
+  --ink: #1e2a78; /* Deep Navy — headings, body */
+  --ink-soft: #5560a0; /* secondary text */
+  --surface: #dce3ff; /* Light Blue — soft fills */
+  --accent: #eec013; /* Signal Yellow — the "pop" */
+  --accent-strong: #e0ad00;
+
+  /* Atmosphere — soft tints used for sections & gradients */
+  --paper: #fcfcfd; /* page base */
   --cloud: #ffffff;
-  --dark: #0b0b10; /* on-dark surface */
+  --tint-sky: #eef1ff; /* pale blue */
+  --tint-cream: #fdf4dc; /* pale warm */
+  --tint-lilac: #f4f0ff;
+  --dark: #141232; /* deep panel (navy-violet) */
 
   /* Status */
   --success: #1b9d6b;
   --warning: #e2a21a;
   --error: #d6332b;
-  --info: #3f5bd9;
 
   /* Hairlines */
-  --line: #d8ddf2;
-  --line-on-dark: rgba(255, 255, 255, 0.14);
+  --line: #e7e9f5;
+  --line-soft: #eef0fa;
+  --line-on-dark: rgba(255, 255, 255, 0.12);
 
-  /* Spacing scale — 4pt grid (§06) */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
+  /* Spacing — 4pt grid (§06) */
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
@@ -38,59 +41,61 @@
   --space-8: 64px;
   --space-9: 96px;
 
-  /* Radii */
-  --radius-md: 8px; /* buttons, inputs, badges */
-  --radius-lg: 10px; /* cards, modals */
-  --radius-xl: 16px; /* large feature panels */
+  /* Radii — rounder & friendlier than the print spec */
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
 
-  /* Elevation — shadow/raised */
-  --shadow-raised: 0 8px 24px -16px rgba(20, 30, 80, 0.3);
-  --shadow-card: 0 1px 2px rgba(20, 30, 80, 0.06),
-    0 12px 32px -20px rgba(20, 30, 80, 0.35);
-  --shadow-pop: 0 24px 60px -28px rgba(20, 30, 80, 0.45);
+  /* Elevation — soft, diffuse */
+  --shadow-xs: 0 1px 2px rgba(20, 30, 80, 0.06);
+  --shadow-sm: 0 2px 10px -3px rgba(20, 30, 80, 0.12);
+  --shadow-card: 0 18px 40px -24px rgba(20, 30, 80, 0.35);
+  --shadow-pop: 0 30px 70px -30px rgba(20, 30, 80, 0.45);
+  --shadow-nav: 0 8px 30px -12px rgba(20, 30, 80, 0.18);
 }
 
-/* Expose tokens to Tailwind utilities (bg-brand, text-ink, font-display …) */
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-surface: var(--surface);
-  --color-surface-soft: var(--surface-soft);
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --color-paper: var(--paper);
   --color-cloud: var(--cloud);
+  --color-tint-sky: var(--tint-sky);
+  --color-tint-cream: var(--tint-cream);
+  --color-tint-lilac: var(--tint-lilac);
   --color-dark: var(--dark);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
-  --color-info: var(--info);
   --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
 
   --font-display: var(--font-open-sauce), "Open Sauce One", system-ui, sans-serif;
   --font-sans: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
 
-  --radius-md: 8px;
-  --radius-lg: 10px;
-  --radius-xl: 16px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
 
-  --shadow-raised: var(--shadow-raised);
-  --shadow-card: var(--shadow-card);
-  --shadow-pop: var(--shadow-pop);
-
-  /* Type scale (§05) — fluid for display, fixed for UI */
-  --text-display: clamp(2.75rem, 1.6rem + 5.2vw, 5rem); /* hero */
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.02em;
-  --text-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
-  --text-h1--line-height: 1.05;
-  --text-h1--letter-spacing: -0.02em;
-  --text-h2: clamp(1.75rem, 1.3rem + 1.6vw, 2.25rem);
+  /* Type scale — chunky display, comfortable body */
+  --text-display: clamp(2.85rem, 1.5rem + 5.6vw, 5.25rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.1rem, 1.4rem + 2.9vw, 3.4rem);
+  --text-h1--line-height: 1.04;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(1.65rem, 1.2rem + 1.7vw, 2.25rem);
   --text-h2--line-height: 1.1;
-  --text-h2--letter-spacing: -0.015em;
-  --text-h3: 1.375rem; /* 22px */
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: 1.375rem;
   --text-h3--line-height: 1.25;
   --text-h3--letter-spacing: -0.01em;
 }
@@ -111,27 +116,31 @@
   body {
     background-color: var(--paper);
     color: var(--ink);
-    font-feature-settings: "ss01", "cv01";
+    font-feature-settings: "ss01";
     text-rendering: optimizeLegibility;
   }
 
-  /* Display family for headings */
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--ink);
     text-wrap: balance;
+    letter-spacing: -0.02em;
   }
 
   p {
     text-wrap: pretty;
   }
 
-  /* Accessible, on-brand focus ring (§02 P05) */
+  /* Offset anchor targets for the fixed overlay navbar */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--brand);
+    outline: 3px solid var(--brand);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   ::selection {
@@ -141,12 +150,11 @@
 }
 
 /* ============================================================
-   Utilities & components
+   Components
    ============================================================ */
 @layer components {
-  /* Section rhythm */
   .section {
-    padding-block: clamp(4rem, 2.5rem + 7vw, 8rem);
+    padding-block: clamp(4rem, 2.5rem + 7vw, 8.5rem);
   }
 
   .container-x {
@@ -156,141 +164,154 @@
     padding-inline: 20px;
   }
   @media (min-width: 768px) {
-    .container-x {
-      padding-inline: 32px;
-    }
+    .container-x { padding-inline: 32px; }
   }
   @media (min-width: 1280px) {
-    .container-x {
-      padding-inline: 40px;
-    }
+    .container-x { padding-inline: 40px; }
   }
 
-  /* Eyebrow / section kicker — mono, tracked out */
+  /* Eyebrow — tracked-out uppercase kicker */
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: 0.6875rem; /* 11px */
-    letter-spacing: 0.22em;
+    font-size: 0.6875rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
   }
 
-  /* Numeric receipts use mono for that "data" feel */
   .tabular {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
   }
 
-  /* Buttons — radius/md, 44px hit target (§07) */
+  /* ── Buttons — friendly pills ───────────────────────── */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    min-height: 48px;
-    padding-inline: 1.375rem;
-    border-radius: var(--radius-md);
+    min-height: 50px;
+    padding-inline: 1.5rem;
+    border-radius: var(--radius-pill);
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 0.9375rem;
     line-height: 1;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
     cursor: pointer;
-    transition: transform 0.18s ease, background-color 0.18s ease,
-      box-shadow 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+      color 0.2s ease, filter 0.2s ease;
   }
-  .btn:active {
-    transform: translateY(1px);
+  .btn:active { transform: translateY(1px) scale(0.99); }
+
+  /* Primary pop — Signal Yellow on navy text (brand §07 "Get audit") */
+  .btn-accent {
+    background: var(--accent);
+    color: var(--ink);
+    box-shadow: 0 10px 24px -12px rgba(238, 192, 19, 0.9);
+  }
+  .btn-accent:hover {
+    background: var(--accent-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -12px rgba(238, 192, 19, 0.95);
   }
 
   .btn-primary {
     background: var(--ink);
     color: var(--cloud);
-    box-shadow: var(--shadow-raised);
   }
   .btn-primary:hover {
     background: var(--brand);
-  }
-
-  .btn-accent {
-    background: var(--accent);
-    color: var(--ink);
-  }
-  .btn-accent:hover {
-    filter: brightness(1.04);
-    box-shadow: var(--shadow-raised);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
   }
 
   .btn-secondary {
     background: var(--surface);
     color: var(--ink);
   }
-  .btn-secondary:hover {
-    background: var(--surface-soft);
-  }
+  .btn-secondary:hover { background: #cfd8ff; }
 
   .btn-ghost {
-    background: transparent;
+    background: var(--cloud);
     color: var(--ink);
-    border: 1px solid var(--line);
+    border: 1.5px solid var(--line);
   }
   .btn-ghost:hover {
-    border-color: var(--brand);
-    background: var(--cloud);
+    border-color: var(--ink);
+    transform: translateY(-2px);
   }
 
-  /* Card — surface elevated (§07) */
+  /* ── Cards ──────────────────────────────────────────── */
   .card {
     background: var(--cloud);
     border: 1px solid var(--line);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-card);
   }
 
-  /* Status badge */
-  .badge {
+  .soft-card {
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--line);
+    background: var(--cloud);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .soft-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+    border-color: #d2d8f0;
+  }
+
+  /* ── Pills / badges ─────────────────────────────────── */
+  .chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.25rem 0.625rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8125rem;
     font-weight: 600;
-    line-height: 1.4;
+    border: 1px solid var(--line);
+    background: var(--cloud);
   }
-  .badge-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 999px;
+  .badge-dot { width: 8px; height: 8px; border-radius: 999px; }
+
+  /* ── Backgrounds / atmosphere ───────────────────────── */
+  .hero-gradient {
+    background:
+      radial-gradient(110% 120% at 8% 0%, var(--surface) 0%, transparent 42%),
+      radial-gradient(120% 120% at 100% 8%, #fdeec0 0%, transparent 48%),
+      radial-gradient(90% 90% at 60% 100%, var(--tint-lilac) 0%, transparent 60%),
+      var(--paper);
+  }
+  .warm-panel {
+    background:
+      radial-gradient(100% 140% at 0% 0%, #fdeec0 0%, transparent 55%),
+      radial-gradient(100% 140% at 100% 100%, var(--surface) 0%, transparent 55%),
+      var(--tint-cream);
   }
 }
 
 /* ============================================================
-   Motion — high-impact page load + scroll reveal (reduced-motion safe)
+   Motion — page-load + scroll reveal (reduced-motion safe)
    ============================================================ */
 @layer utilities {
   .reveal {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
     transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform;
   }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal.is-visible { opacity: 1; transform: none; }
 
   @keyframes float-up {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
   }
   .animate-in {
     animation: float-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -298,43 +319,24 @@
   }
 
   @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
-  .animate-marquee {
-    animation: marquee 32s linear infinite;
-  }
+  .animate-marquee { animation: marquee 30s linear infinite; }
 
-  .grid-texture {
-    background-image: linear-gradient(
-        to right,
-        color-mix(in srgb, var(--ink) 6%, transparent) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--ink) 6%, transparent) 1px,
-        transparent 1px
-      );
-    background-size: 32px 32px;
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
+  .animate-float { animation: float-y 6s ease-in-out infinite; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal { opacity: 1; transform: none; }
 }

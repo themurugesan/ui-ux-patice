@@ -30,51 +30,48 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section id="process" className="section bg-surface-soft">
+    <section id="process" className="section">
       <div className="container-x">
-        <Reveal className="max-w-2xl">
-          <span className="eyebrow text-brand">How it works</span>
-          <h2
-            className="mt-4 font-display font-extrabold"
-            style={{
-              fontSize: "var(--text-h1)",
-              lineHeight: "var(--text-h1--line-height)",
-              letterSpacing: "var(--text-h1--letter-spacing)",
-            }}
-          >
-            Four steps to your first lead.
-          </h2>
-          <p className="mt-4 text-lg text-ink-soft">
-            No drawn-out onboarding. From connection to live campaign, you stay
-            in control the whole way.
-          </p>
-        </Reveal>
+        <div className="mx-auto max-w-2xl text-center">
+          <Reveal>
+            <span className="eyebrow text-brand">How it works</span>
+            <h2
+              className="mt-4 font-display"
+              style={{
+                fontSize: "var(--text-h1)",
+                lineHeight: "var(--text-h1--line-height)",
+                letterSpacing: "var(--text-h1--letter-spacing)",
+              }}
+            >
+              Four steps to your first lead.
+            </h2>
+            <p className="mt-4 text-lg text-ink-soft">
+              No drawn-out onboarding. From connection to live campaign, you stay
+              in control the whole way.
+            </p>
+          </Reveal>
+        </div>
 
-        <ol className="relative mt-14 grid gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6">
-          {/* connecting line (desktop) */}
-          <span
-            className="absolute left-0 right-0 top-7 hidden h-px bg-line lg:block"
-            aria-hidden="true"
-          />
+        <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => {
             const Icon = s.icon;
             return (
-              <Reveal key={s.n} delay={i * 100} as="li" className="relative">
-                <div className="flex items-center gap-4 lg:block">
-                  <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-line bg-cloud text-brand shadow-raised">
+              <Reveal key={s.n} delay={i * 90} as="li">
+                <div className="soft-card relative flex h-full flex-col p-7">
+                  <span
+                    className="tabular absolute right-6 top-5 font-display text-5xl font-extrabold text-tint-sky"
+                    aria-hidden="true"
+                  >
+                    {s.n}
+                  </span>
+                  <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-accent">
                     <Icon size={24} />
                   </span>
-                  <span className="tabular hidden text-sm font-semibold text-brand lg:mt-5 lg:block">
-                    STEP {s.n}
-                  </span>
-                  <h3 className="font-display text-lg font-bold text-ink lg:mt-2 lg:text-xl">
-                    <span className="tabular mr-2 text-brand lg:hidden">
-                      {s.n}
-                    </span>
+                  <h3 className="relative mt-5 font-display text-lg font-extrabold text-ink">
                     {s.title}
                   </h3>
+                  <p className="relative mt-2 text-ink-soft">{s.body}</p>
                 </div>
-                <p className="mt-3 max-w-xs text-ink-soft lg:pr-4">{s.body}</p>
               </Reveal>
             );
           })}

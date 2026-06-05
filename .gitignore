@@ -9,6 +9,8 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/temp_screenshot
+/reference_website_screenshot
 
 # testing
 /coverage

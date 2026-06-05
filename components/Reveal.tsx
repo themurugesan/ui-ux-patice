@@ -39,7 +39,15 @@ export default function Reveal({
       { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Safety net: never leave content permanently hidden if the observer
+    // doesn't fire (edge cases, very slow paint). Content is the priority.
+    const fallback = window.setTimeout(() => setVisible(true), 1800);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   return (

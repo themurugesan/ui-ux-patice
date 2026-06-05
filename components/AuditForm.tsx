@@ -61,7 +61,7 @@ export default function AuditForm() {
             autoComplete="email"
             placeholder="name@company.com"
             aria-invalid={status === "error"}
-            className="min-h-12 rounded-md border border-white/25 bg-white/10 px-4 text-white placeholder:text-white/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="min-h-12 rounded-2xl border border-white/25 bg-white/10 px-4 text-white placeholder:text-white/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -75,7 +75,7 @@ export default function AuditForm() {
             inputMode="url"
             placeholder="acmeplumbing.com"
             aria-invalid={status === "error"}
-            className="min-h-12 rounded-md border border-white/25 bg-white/10 px-4 text-white placeholder:text-white/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="min-h-12 rounded-2xl border border-white/25 bg-white/10 px-4 text-white placeholder:text-white/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           />
         </div>
       </div>

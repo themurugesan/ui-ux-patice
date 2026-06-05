@@ -5,7 +5,7 @@ const FEATURES = [
   {
     icon: TargetIcon,
     title: "Precision targeting",
-    body: "Right intent, right time. We cut broad-match waste and put budget on the searches that actually book jobs.",
+    body: "Right intent, right time. We cut broad-match waste and put budget on searches that actually book jobs.",
   },
   {
     icon: CompassIcon,
@@ -33,15 +33,15 @@ const ROWS = [
 
 export default function Features() {
   return (
-    <section id="features" className="section bg-surface-soft">
+    <section id="features" className="section warm-panel">
       <div className="container-x">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left: narrative + feature list */}
-          <div className="lg:sticky lg:top-24">
+          <div className="lg:sticky lg:top-28">
             <Reveal>
               <span className="eyebrow text-brand">What we build</span>
               <h2
-                className="mt-4 font-display font-extrabold"
+                className="mt-4 font-display"
                 style={{
                   fontSize: "var(--text-h1)",
                   lineHeight: "var(--text-h1--line-height)",
@@ -56,16 +56,16 @@ export default function Features() {
               </p>
             </Reveal>
 
-            <ul className="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {FEATURES.map((f, i) => {
                 const Icon = f.icon;
                 return (
-                  <Reveal key={f.title} delay={i * 80} as="li">
-                    <div className="flex h-full flex-col bg-cloud p-5">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface text-brand">
+                  <Reveal key={f.title} delay={i * 70}>
+                    <div className="soft-card flex h-full flex-col p-5">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-tint-sky text-brand">
                         <Icon size={20} />
                       </span>
-                      <h3 className="mt-4 font-display text-base font-bold text-ink">
+                      <h3 className="mt-4 font-display text-base font-extrabold text-ink">
                         {f.title}
                       </h3>
                       <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
@@ -75,13 +75,12 @@ export default function Features() {
                   </Reveal>
                 );
               })}
-            </ul>
+            </div>
           </div>
 
           {/* Right: product UI mock */}
           <Reveal delay={120}>
-            <div className="card overflow-hidden bg-dark text-white">
-              {/* window chrome */}
+            <div className="card overflow-hidden border-transparent bg-dark text-white">
               <div className="flex items-center gap-2 border-b border-white/10 px-5 py-3.5">
                 <span className="h-3 w-3 rounded-full bg-white/20" />
                 <span className="h-3 w-3 rounded-full bg-white/20" />
@@ -91,7 +90,6 @@ export default function Features() {
                 </span>
               </div>
 
-              {/* tabs */}
               <div className="flex gap-6 border-b border-white/10 px-5">
                 {["Overview", "Campaigns", "Keywords", "Spend"].map((t, i) => (
                   <span
@@ -108,7 +106,6 @@ export default function Features() {
                 ))}
               </div>
 
-              {/* table */}
               <div className="p-5">
                 <table className="w-full text-left">
                   <thead>
@@ -145,9 +142,9 @@ export default function Features() {
                   </tbody>
                 </table>
 
-                <div className="mt-5 flex items-center justify-between rounded-lg bg-white/5 px-4 py-3">
+                <div className="mt-5 flex items-center justify-between rounded-2xl bg-white/5 px-4 py-3">
                   <span className="text-sm text-white/60">Blended account ROAS</span>
-                  <span className="tabular text-lg font-bold text-accent">4.2×</span>
+                  <span className="tabular text-lg font-extrabold text-accent">4.2×</span>
                 </div>
               </div>
             </div>
